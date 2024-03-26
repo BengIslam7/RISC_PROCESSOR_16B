@@ -1,0 +1,49 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity reg_file is
+    Port ( acc_ce : in STD_LOGIC ;
+           pc_ce : in STD_LOGIC ;
+           rpc_ce : in STD_LOGIC ;
+           rx_ce : in STD_LOGIC ;
+           clk : in STD_LOGIC ;
+           rst : in STD_LOGIC ;
+           rx_num : in STD_LOGIC_VECTOR ( 5 downto 0 );
+           din : in STD_LOGIC_VECTOR ( 15 downto 0) ;
+           rx_out : out STD_LOGIC_VECTOR ( 15 downto 0 );
+           acc_out : out STD_LOGIC_VECTOR ( 15 downto 0 );
+           pc_out : out STD_LOGIC_VECTOR ( 15 downto 0 )
+         );
+end reg_file ;
+
+architecture arch of reg_file is
+begin
+    process(clk)
+    type arrayreg is array (0 to 63) of std_logic_vector(15 downto 0);
+    variable regs  : arrayreg := (others => x"0000");
+    begin
+    if  rst ='1' then 
+       pc_out <= X"A000" ;
+       regs(63):= X"A000" ;
+    end if;
+    if clk'event  then
+       acc_out <= regs(0) ;
+       pc_out <= regs(63);
+       --if to_integer(unsigned(rx_num)) <63 and to_integer(unsigned(rx_num)) > 0 then
+           rx_out <= regs(to_integer(unsigned(rx_num)));
+       --else rx_out <= X"0000";
+       --end if;
+       if acc_ce ='1' then
+           regs(0) := din ;
+       elsif pc_ce ='1' then
+           regs(63) := din ;
+       elsif rpc_ce ='1' then
+           regs(62) := din ;  
+       elsif rx_ce = '1' then
+           regs(to_integer(unsigned(rx_num))) := din ;
+       end if;
+    end if ;
+    end process;
+end arch;

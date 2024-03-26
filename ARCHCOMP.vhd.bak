@@ -1,0 +1,181 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity proc is
+    Port (
+        clk : in  std_logic;
+        rst : in  std_logic;
+         
+        ram_addr : out std_logic_vector(15 downto 0);
+        ram_din  : out std_logic_vector(15 downto 0);
+        ram_dout : in  std_logic_vector(15 downto 0);
+        ram_we   : out std_logic );
+        -- Ajoutez ici tous les autres ports nécessaires pour les entrées/sorties du processeur
+end Proc;
+
+architecture Behavioral of proc is
+    -- Instanciation des composants
+    component alu_dummy is
+        Port ( op : in STD_LOGIC_VECTOR(3 downto 0);
+           i1 : in STD_LOGIC_VECTOR(15 downto 0);
+           i2 : in STD_LOGIC_VECTOR(15 downto 0);
+           o : out STD_LOGIC_VECTOR(15 downto 0);
+           st : out STD_LOGIC_VECTOR ( 3 downto 0 ));
+    end component;
+
+    component reg_file_dummy is
+        Port ( acc_ce : in STD_LOGIC ;
+           pc_ce : in STD_LOGIC ;
+           rpc_ce : in STD_LOGIC ;
+           rx_ce : in STD_LOGIC ;
+           clk : in STD_LOGIC ;
+           rst : in STD_LOGIC ;
+           rx_num : in STD_LOGIC_VECTOR ( 5 downto 0 );
+           din : in STD_LOGIC_VECTOR ( 15 downto 0) ;
+           rx_out : out STD_LOGIC_VECTOR ( 15 downto 0 );
+           acc_out : out STD_LOGIC_VECTOR ( 15 downto 0 );
+           pc_out : out STD_LOGIC_VECTOR ( 15 downto 0 )
+         );
+    end component;
+
+    component instr_reg_dummy is
+        Port ( 
+           clk : in  std_logic;
+           ce  : in  std_logic;
+           rst : in  std_logic;
+           instr : in STD_LOGIC_VECTOR ( 15 downto 0 );
+           cond : out STD_LOGIC_VECTOR ( 3 downto 0 );
+           op : out STD_LOGIC_VECTOR ( 3 downto 0 );
+           updt : out STD_LOGIC ;
+           imm : out STD_LOGIC ;
+           val : out STD_LOGIC_VECTOR (5 downto 0 ));
+    end component;
+
+    component mux21 is
+         Port ( 
+           in0 : in STD_LOGIC_VECTOR (15 downto 0);
+           in1 : in STD_LOGIC_VECTOR (15 downto 0);
+           sel : in STD_LOGIC ;
+           outp : out STD_LOGIC_VECTOR (15 downto 0)
+         );
+    end component;
+
+    component mux41 is
+        Port ( 
+           in1 : in STD_LOGIC_VECTOR ( 15 downto 0);
+           in2 : in STD_LOGIC_VECTOR ( 15 downto 0);
+           in3 : in STD_LOGIC_VECTOR ( 15 downto 0);
+           sel : in STD_LOGIC_VECTOR(1 downto 0);
+           outp : out STD_LOGIC_VECTOR ( 15 downto 0)
+         );
+    end component;
+    
+    component plus1 is
+        Port ( 
+           in0 : in STD_LOGIC_VECTOR(15 downto 0 );
+           outp : out STD_LOGIC_VECTOR( 15 downto 0 )
+         );
+    end component;
+
+    component status_reg_dummy is
+        port ( clk : in  std_logic;
+         ce  : in  std_logic;
+         rst : in  std_logic;
+
+         i : in  std_logic_vector(3 downto 0);
+         o : out std_logic_vector(3 downto 0) );
+    end component;
+
+    component control_dummy is
+        port ( clk : in  std_logic;
+         rst : in  std_logic;
+
+         status     : in  std_logic_vector(3 downto 0);
+         instr_cond : in  std_logic_vector(3 downto 0);
+         instr_op   : in  std_logic_vector(3 downto 0);
+         instr_updt : in  std_logic;
+
+         instr_ce  : out std_logic;
+         status_ce : out std_logic;
+         acc_ce    : out std_logic;
+         pc_ce     : out std_logic;
+         rpc_ce    : out std_logic;
+         rx_ce     : out std_logic;
+
+         ram_we : out std_logic;
+
+         sel_ram_addr : out std_logic;
+         sel_op1      : out std_logic;
+         sel_rf_din   : out std_logic_vector(1 downto 0) );
+    end component;
+    component reg is
+    Port ( clk : in STD_LOGIC ;
+           rst : in STD_LOGIC ;
+           i : in STD_LOGIC_VECTOR(15 downto 0);
+           o : out STD_LOGIC_VECTOR(15 downto 0));
+    end component;
+    
+    -- Signaux internes
+
+    -- instr reg
+    signal ince  : std_logic;
+    signal cond :STD_LOGIC_VECTOR ( 3 downto 0 );
+    signal op :STD_LOGIC_VECTOR ( 3 downto 0 );
+    signal updt : STD_LOGIC ;
+    signal imm : STD_LOGIC ;
+    signal val : STD_LOGIC_VECTOR (5 downto 0 );
+    signal valext : STD_LOGIC_VECTOR ( 15 downto 0);
+
+    -- cu 
+    signal status     : std_logic_vector(3 downto 0);
+    signal alustatus     : std_logic_vector(3 downto 0);
+    signal status_ce :  std_logic;
+    signal     acc_ce    :  std_logic;
+    signal    pc_ce     :  std_logic;
+    signal     rpc_ce    :  std_logic;
+    signal     rx_ce     :  std_logic;
+    signal     sel_ram_addr :  std_logic;
+    signal     sel_op1      :  std_logic;
+    signal     sel_rf_din   :  std_logic_vector(1 downto 0);
+
+    --breg 
+    signal din : STD_LOGIC_VECTOR ( 15 downto 0) ;
+    signal       rx_out : STD_LOGIC_VECTOR ( 15 downto 0 );
+    signal       acc_out :STD_LOGIC_VECTOR ( 15 downto 0 );
+    signal       pc_out :  STD_LOGIC_VECTOR ( 15 downto 0 );
+    signal       pc_outp1 :  STD_LOGIC_VECTOR ( 15 downto 0 );
+    --alu
+    signal       i1 : STD_LOGIC_VECTOR(15 downto 0);
+    signal       i2 :STD_LOGIC_VECTOR(15 downto 0);
+    signal       o :STD_LOGIC_VECTOR(15 downto 0);
+    --reg
+    signal       ri1 : STD_LOGIC_VECTOR(15 downto 0);
+    signal       ri2 :STD_LOGIC_VECTOR(15 downto 0);
+    signal       ro :STD_LOGIC_VECTOR(15 downto 0);
+
+begin
+    valext <= X"0000";
+    -- Instanciation des composants
+    instrreg : instr_reg_dummy port map (clk,ince,rst,ram_dout,cond,op,updt,imm,val);
+    valext <= valext + val ;
+    cu : control_dummy port map ( clk , rst,status,cond,op,updt,ince,status_ce,acc_ce,pc_ce,rpc_ce,rx_ce,ram_we,sel_ram_addr,sel_op1,sel_rf_din);
+    breg : reg_file_dummy port map ( acc_ce , pc_ce , rpc_ce , rx_ce, clk , rst , val , din , rx_out , acc_out , pc_out);
+    ual : alu_dummy port map ( op,ri1,ri2,o  ,alustatus);  
+    stat : status_reg_dummy port map ( clk,status_ce ,rst,alustatus,status);
+    mux1 : mux21 port map (rx_out,valext,imm,i2);
+    mux2 : mux21 port map (acc_out,pc_out,sel_op1,i1);
+    mux3 : mux21 port map (pc_out,ri2,sel_ram_addr,ram_addr);
+    p1 : plus1 port map (pc_out,pc_outp1);
+    mux4 : mux41 port map (pc_outp1,ro,ram_dout,sel_rf_din,din);
+    op1 : reg port map (clk , rst , i1 , ri1 ) ;
+    op2 : reg port map (clk , rst , i2 , ri2 ) ;
+    ram_din <= ri1 ;
+    res : reg port map (clk , rst , o , ro ) ;
+    -- Connectez les signaux internes entre les composants
+    -- Par exemple, les sorties des registres aux entrées de l'ALU, les signaux de contrôle de l'unité de contrôle aux entrées des multiplexeurs, etc.
+
+    -- Ajoutez ici d'autres liaisons nécessaires entre les composants
+
+end Behavioral;

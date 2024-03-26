@@ -1,0 +1,25 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity status_reg is
+    port ( clk : in  std_logic;
+         ce  : in  std_logic;
+         rst : in  std_logic;
+
+         i : in  std_logic_vector(3 downto 0);
+         o : out std_logic_vector(3 downto 0) );
+end status_reg ;
+
+architecture Arch of status_reg is
+begin
+    process (clk ,rst)
+    begin
+    if rst = '1' then
+        o <= "0000";
+    elsif clk'event and clk ='1' and ce = '1' then
+        o <= i ;
+    end if; 
+   end process ;
+end Arch ;

@@ -1,0 +1,160 @@
+C:/Users/SONY/Desktop/VHDL/ARCHCOMP.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none {C:\Users\SONY\Desktop\VHDL\ARCHCOMP.vhd}
+Model Technology ModelSim SE-64 vcom 10.6d Compiler 2018.02 Feb 24 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity proc
+-- Compiling architecture Behavioral of proc
+
+} {} {}} C:/Users/SONY/Desktop/VHDL/mux21.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none C:/Users/SONY/Desktop/VHDL/mux21.vhd
+Model Technology ModelSim SE-64 vcom 10.6d Compiler 2018.02 Feb 24 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity mux21
+-- Compiling architecture arch of mux21
+
+} {} {}} C:/Users/SONY/Desktop/VHDL/tutoRisc/D_proc/proc_test.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none C:/Users/SONY/Desktop/VHDL/tutoRisc/D_proc/proc_test.vhd
+Model Technology ModelSim SE-64 vcom 10.6d Compiler 2018.02 Feb 24 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity instr_reg_dummy
+-- Compiling architecture arch of instr_reg_dummy
+-- Compiling entity status_reg_dummy
+-- Compiling architecture arch of status_reg_dummy
+-- Compiling entity reg_file_dummy
+-- Compiling architecture arch of reg_file_dummy
+-- Compiling entity alu_dummy
+-- Compiling architecture arch of alu_dummy
+-- Compiling entity control_dummy
+-- Compiling architecture arch of control_dummy
+-- Loading package std_logic_arith
+-- Compiling entity proc_test
+-- Compiling architecture arch of proc_test
+
+} {} {}} C:/Users/SONY/Desktop/VHDL/reg.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none C:/Users/SONY/Desktop/VHDL/reg.vhd
+Model Technology ModelSim SE-64 vcom 10.6d Compiler 2018.02 Feb 24 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity reg
+-- Compiling architecture arch of reg
+
+} {} {}} C:/Users/SONY/Desktop/VHDL/tutoRisc/D_proc/proc.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none C:/Users/SONY/Desktop/VHDL/tutoRisc/D_proc/proc.vhd
+Model Technology ModelSim SE-64 vcom 10.6d Compiler 2018.02 Feb 24 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity proc
+-- Compiling architecture arch of proc
+
+} {} {}} C:/Users/SONY/Desktop/VHDL/inst.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none C:/Users/SONY/Desktop/VHDL/inst.vhd
+Model Technology ModelSim SE-64 vcom 10.6d Compiler 2018.02 Feb 24 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity instr_reg
+-- Compiling architecture Arch of instr_reg
+
+} {} {}} C:/Users/SONY/Desktop/VHDL/Untitled-1.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none C:/Users/SONY/Desktop/VHDL/Untitled-1.vhd
+Model Technology ModelSim SE-64 vcom 10.6d Compiler 2018.02 Feb 24 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity alu
+-- Compiling architecture ArchALU of alu
+
+} {} {}} C:/Users/SONY/Desktop/VHDL/tutoRisc/B_alu/alu_test.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none C:/Users/SONY/Desktop/VHDL/tutoRisc/B_alu/alu_test.vhd
+Model Technology ModelSim SE-64 vcom 10.6d Compiler 2018.02 Feb 24 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Compiling entity alu_test
+-- Compiling architecture arch of alu_test
+
+} {} {}} C:/Users/SONY/Desktop/VHDL/mux41.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none C:/Users/SONY/Desktop/VHDL/mux41.vhd
+Model Technology ModelSim SE-64 vcom 10.6d Compiler 2018.02 Feb 24 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity mux41
+-- Compiling architecture arch of mux41
+
+} {} {}} C:/Users/SONY/Desktop/VHDL/uc.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none {C:\Users\SONY\Desktop\VHDL\uc.vhd}
+Model Technology ModelSim SE-64 vcom 10.6d Compiler 2018.02 Feb 24 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity control
+-- Compiling architecture Arch of control
+
+} {} {}} C:/Users/SONY/Desktop/VHDL/tutoRisc/A_regs/regs_test.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none C:/Users/SONY/Desktop/VHDL/tutoRisc/A_regs/regs_test.vhd
+Model Technology ModelSim SE-64 vcom 10.6d Compiler 2018.02 Feb 24 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Compiling entity instr_reg_test
+-- Compiling architecture arch of instr_reg_test
+-- Compiling entity status_reg_test
+-- Compiling architecture arch of status_reg_test
+-- Compiling entity reg_file_test
+-- Compiling architecture arch of reg_file_test
+
+} {} {}} C:/Users/SONY/Desktop/VHDL/plus1.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none C:/Users/SONY/Desktop/VHDL/plus1.vhd
+Model Technology ModelSim SE-64 vcom 10.6d Compiler 2018.02 Feb 24 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity plus1
+-- Compiling architecture arch of plus1
+
+} {} {}} C:/Users/SONY/Desktop/VHDL/tutoRisc/C_control/control_test.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none {C:\Users\SONY\Desktop\VHDL\tutoRisc\C_control\control_test.vhd}
+Model Technology ModelSim SE-64 vcom 10.6d Compiler 2018.02 Feb 24 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Compiling entity control_test
+-- Compiling architecture arch of control_test
+
+} {} {}} C:/Users/SONY/Desktop/VHDL/breg.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none C:/Users/SONY/Desktop/VHDL/breg.vhd
+Model Technology ModelSim SE-64 vcom 10.6d Compiler 2018.02 Feb 24 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity reg_file
+-- Compiling architecture arch of reg_file
+
+} {} {}} C:/Users/SONY/Desktop/VHDL/status.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none C:/Users/SONY/Desktop/VHDL/status.vhd
+Model Technology ModelSim SE-64 vcom 10.6d Compiler 2018.02 Feb 24 2018
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity status_reg
+-- Compiling architecture Arch of status_reg
+
+} {} {}}

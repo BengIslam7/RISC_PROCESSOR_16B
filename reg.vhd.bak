@@ -1,0 +1,24 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+
+entity reg is
+    Port ( clk : in STD_LOGIC ;
+           rst : in STD_LOGIC ;
+           i : in STD_LOGIC_VECTOR(15 downto 0);
+           o : out STD_LOGIC_VECTOR(15 downto 0););
+end reg;
+
+architecture arch of reg is
+begin
+    process (clk)
+        begin
+            if (rst='1') then
+                o <= X"0000";
+            elsif ( rising_edge(clk)) then 
+                o <= i ;
+            end if ;
+    end process ;
+end architecture ;
