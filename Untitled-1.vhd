@@ -29,7 +29,7 @@ variable shift : integer;
             when "0010" => 
                 res := i1 xor i2;
             when "0011" => 
-                res := not i1;
+                res := not i2;
             when "0100" => 
                 res := i1 + i2;
                 -- CARRY FLAG
@@ -62,7 +62,7 @@ variable shift : integer;
                 else
                     flg(0) := '0';
                 end if;
-            when "0110" => -- SLL               
+           when "0110" => -- SLL               
             shift := to_integer(signed(i2));
             res := STD_LOGIC_VECTOR(shift_left(unsigned(i1), shift));
             if ( i1(15)='0' and res(15)='1') or ( i1(15)='1' and res(15)='0') then
@@ -70,10 +70,11 @@ variable shift : integer;
             else flg(0):='0';
             end if ;
             if ( shift > 0 ) and ( shift <17) then
-            flg(1):=i1((15-shift)+1);
-            elsif  ( shift < 0) and (shift > -17) then
-            flg(1):=i1(-(shift)-1);
-            else flg(1):='0';
+            for i in (15-shift)+1 to 15 loop
+                if(i1(i)='1') then flg(1):='1'; 
+                end if;
+            end loop ;
+            
             end if;
             when "0111" => -- SRL                
             shift := to_integer(signed(i2));
@@ -81,12 +82,12 @@ variable shift : integer;
             if ( i1(15)='0' and res(15)='1') or ( i1(15)='1' and res(15)='0') then
                 flg(0):='1';
             else flg(0):='0';
-            end if;
-            if ( shift > 0 ) and ( shift <17) then
-            flg(1):=i1(shift-1);
-            elsif  ( shift < 0) and (shift > -17) then
-            flg(1):=i1(15-(-shift)+1);
-            else flg(1):='0';
+            end if;          
+            if  ( shift < 0) and (shift > -17) then
+                for i in (15-(-shift)+1) to 15 loop
+                    if(i1(i)='1')then flg(1):='1' ;
+                     end if ;
+                end loop;
             end if;
             when "1000" => -- LDA
                 res := i2 ;
