@@ -144,8 +144,43 @@ architecture Arch of control is
                 end if;
                 end if;
                 if ( instr_op="1000" ) then 
+                    if( instr_cond ="0001") then
                     sel_ram_addr <= '1' ;
+                    ram_we <= '0' ;
+                elsif ( instr_cond = "0010" and status(3)='1' ) then 
+                    sel_ram_addr <= '1' ;
+                    ram_we <= '0' ;
+                elsif ( instr_cond = "0011" and status(3)='0' ) then 
+                    sel_ram_addr <= '1' ;
+                    ram_we <= '0' ;
+                elsif ( instr_cond = "0100" and ( status(3)='0' and status(2)='0') ) then 
+                    sel_ram_addr <= '1' ;
+                    ram_we <= '0' ;
+                elsif ( instr_cond = "0101" and (status(3)='1' or status(2)='1') ) then 
+                    sel_ram_addr <= '1' ;
+                    ram_we <= '0' ;
+                elsif ( instr_cond = "0110" and status(2)='1' ) then 
+                    sel_ram_addr <= '1' ;
+                    ram_we <= '0' ;
+                elsif ( instr_cond = "0111" and status(2)='0' ) then 
+                    sel_ram_addr <= '1' ;
+                    ram_we <= '0' ;
+                elsif ( instr_cond = "1000" and status(1)='1' ) then 
+                    sel_ram_addr <= '1' ;
+                    ram_we <= '0' ;
+                elsif ( instr_cond = "1001" and status(1)='0' ) then 
+                    sel_ram_addr <= '1' ;
+                    ram_we <= '0' ;
+                elsif ( instr_cond = "1010" and status(0)='1' ) then 
+                    sel_ram_addr <= '1' ;
+                    ram_we <= '0' ;
+                elsif ( instr_cond = "1011" and status(0)='0' ) then 
+                    sel_ram_addr <= '1' ;
+                    ram_we <= '0' ;
+                else 
+                    sel_ram_addr <= '0';
                     ram_we <='0' ;
+                end if;
                 elsif ( instr_op="1001" ) then 
                 if( instr_cond ="0001") then
                     sel_ram_addr <= '1' ;
